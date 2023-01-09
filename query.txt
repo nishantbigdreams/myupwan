@@ -1,0 +1,2 @@
+LTER TABLE `products` ADD `home_best_sellers` TINYINT(1) NULL AFTER `alt_name`, ADD `home_recent_arrivals` TINYINT(1) NULL AFTER `home_best_sellers`;
+ALTER TABLE `contactuses` ADD `phone` VARCHAR(11) NULL AFTER `email`;

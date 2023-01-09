@@ -1,0 +1,48 @@
+/*.custom-product-img{
+    width: 301px !important;
+    height: 301px !important;
+}*/
+.custom-text-center{
+    text-align: center !important;
+}
+.custom-otpbtn {
+    padding: 6px 12px !important;
+    line-height: 1.42857143 !important;
+
+}
+.alert-danger {
+    color: #ffffff !important;
+}
+
+.alert-success {
+    color: #ffffff !important;
+}
+#otp_btn {
+    color: #fff;
+}
+.output-display{
+    color: red !important;
+}.output-display1{
+    color: red !important;
+}.output-display11{
+    color: red !important;
+}
+.custom-mobile-error{
+    text-align: center !important;
+    font-size: 13px !important;
+    color: red !important;
+
+}
+@media screen and (max-width: 767px) {
+    .otp-div {
+        margin: 10px 0;
+    }
+
+    .presentation-1 {
+        width: 50%;
+    }
+
+    .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open > .dropdown-toggle.btn-success {
+        color: #fff;
+    }
+}
