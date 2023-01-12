@@ -170,8 +170,7 @@ $menuCatgPlantcare = \App\Category::select('name', 'id')->where('parent_category
                     <a href="https://www.facebook.com/Myupavan-104412385283041" title="social-link" class="social-link social-facebook fab fa-facebook-f" target="_blank"></a>
                     <a href="https://www.instagram.com/Myupavan/" title="social-link" class="social-link social-instagram fab fa-instagram" target="_blank"></a>
                     <a href="https://www.linkedin.com/company/my-upavan/" title="social-link" class="social-link social-linkedin fab fa-linkedin-in" target="_blank"></a>
-                    <a href="https://www.twitter.com" title="social-link" class="social-link social-twitter fab fa-twitter" target="_blank"></a>
-                    <a href="https://www.pinterest.com" title="social-link" class="social-link social-pinterest fab fa-pinterest-p" target="_blank"></a>
+                    
                 </div>
             </div>
         </div>
