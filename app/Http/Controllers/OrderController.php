@@ -1,8 +1,4 @@
 <?php
-<<<<<<< HEAD
-
-=======
->>>>>>> 15ee92ed3a3c14697be106fb29c13fa6150dc156
 namespace App\Http\Controllers;
 //use Excel;
 use App\User;
