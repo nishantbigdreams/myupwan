@@ -1,0 +1,136 @@
+[2022-09-19 23:04:54]# API REQUEST --->POST /api/get_subcateg_byname HTTP/1.1
+Accept:             application/json, text/plain, */*
+Accept-Encoding:    gzip, deflate, br
+Accept-Language:    en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control:      no-cache
+Connection:         keep-alive
+Content-Length:     23
+Content-Type:       text/plain
+Host:               myupwan.bigdreams.in
+Origin:             http://localhost:8100
+Pragma:             no-cache
+Referer:            http://localhost:8100/
+Sec-Ch-Ua:          "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+Sec-Ch-Ua-Mobile:   ?1
+Sec-Ch-Ua-Platform: "Android"
+Sec-Fetch-Dest:     empty
+Sec-Fetch-Mode:     cors
+Sec-Fetch-Site:     cross-site
+User-Agent:         Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36
+
+{"categ_name":"Plants"}
+[2022-09-19 23:05:41]# API REQUEST --->POST /api/get_subcateg_byname HTTP/1.1
+Accept:             application/json, text/plain, */*
+Accept-Encoding:    gzip, deflate, br
+Accept-Language:    en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control:      no-cache
+Connection:         keep-alive
+Content-Length:     23
+Content-Type:       text/plain
+Host:               myupwan.bigdreams.in
+Origin:             http://localhost:8100
+Pragma:             no-cache
+Referer:            http://localhost:8100/
+Sec-Ch-Ua:          "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+Sec-Ch-Ua-Mobile:   ?1
+Sec-Ch-Ua-Platform: "Android"
+Sec-Fetch-Dest:     empty
+Sec-Fetch-Mode:     cors
+Sec-Fetch-Site:     cross-site
+User-Agent:         Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36
+
+{"categ_name":"Plants"}
+[2022-09-19 23:05:41]# API REQUEST --->
+[2022-09-19 23:06:00]# API REQUEST --->POST /api/get_subcateg_byname HTTP/1.1
+Accept:             application/json, text/plain, */*
+Accept-Encoding:    gzip, deflate, br
+Accept-Language:    en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control:      no-cache
+Connection:         keep-alive
+Content-Length:     23
+Content-Type:       text/plain
+Host:               myupwan.bigdreams.in
+Origin:             http://localhost:8100
+Pragma:             no-cache
+Referer:            http://localhost:8100/
+Sec-Ch-Ua:          "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+Sec-Ch-Ua-Mobile:   ?1
+Sec-Ch-Ua-Platform: "Android"
+Sec-Fetch-Dest:     empty
+Sec-Fetch-Mode:     cors
+Sec-Fetch-Site:     cross-site
+User-Agent:         Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36
+
+{"categ_name":"Plants"}
+[2022-09-19 23:06:00]# API REQUEST --->
+[2022-09-19 23:06:24]# API REQUEST --->
+[2022-09-19 23:07:15]# API REQUEST --->
+[2022-09-19 23:07:56]# API REQUEST --->POST /api/get_subcateg_byname HTTP/1.1
+Accept:             application/json, text/plain, */*
+Accept-Encoding:    gzip, deflate, br
+Accept-Language:    en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control:      no-cache
+Connection:         keep-alive
+Content-Length:     23
+Content-Type:       text/plain
+Host:               myupwan.bigdreams.in
+Origin:             http://localhost:8100
+Pragma:             no-cache
+Referer:            http://localhost:8100/
+Sec-Ch-Ua:          "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+Sec-Ch-Ua-Mobile:   ?1
+Sec-Ch-Ua-Platform: "Android"
+Sec-Fetch-Dest:     empty
+Sec-Fetch-Mode:     cors
+Sec-Fetch-Site:     cross-site
+User-Agent:         Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36
+
+{"categ_name":"Plants"}
+
+[2022-09-19 23:07:56]# API REQUEST --->
+[2022-09-19 23:11:08]# API REQUEST --->POST /api/get_subcateg_byname HTTP/1.1
+Accept:             application/json, text/plain, */*
+Accept-Encoding:    gzip, deflate, br
+Accept-Language:    en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control:      no-cache
+Connection:         keep-alive
+Content-Length:     23
+Content-Type:       application/json
+Host:               myupwan.bigdreams.in
+Origin:             http://localhost:8100
+Pragma:             no-cache
+Referer:            http://localhost:8100/
+Sec-Ch-Ua:          "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+Sec-Ch-Ua-Mobile:   ?1
+Sec-Ch-Ua-Platform: "Android"
+Sec-Fetch-Dest:     empty
+Sec-Fetch-Mode:     cors
+Sec-Fetch-Site:     cross-site
+User-Agent:         Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36
+
+{"categ_name":"Plants"}
+
+[2022-09-19 23:11:08]# API REQUEST --->Plants
+[2022-09-19 23:11:22]# API REQUEST --->POST /api/get_subcateg_byname HTTP/1.1
+Accept:             application/json, text/plain, */*
+Accept-Encoding:    gzip, deflate, br
+Accept-Language:    en-GB,en-US;q=0.9,en;q=0.8
+Cache-Control:      no-cache
+Connection:         keep-alive
+Content-Length:     29
+Content-Type:       application/json
+Host:               myupwan.bigdreams.in
+Origin:             http://localhost:8100
+Pragma:             no-cache
+Referer:            http://localhost:8100/
+Sec-Ch-Ua:          "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+Sec-Ch-Ua-Mobile:   ?1
+Sec-Ch-Ua-Platform: "Android"
+Sec-Fetch-Dest:     empty
+Sec-Fetch-Mode:     cors
+Sec-Fetch-Site:     cross-site
+User-Agent:         Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36
+
+{"categ_name":"Popular 2022"}
+
+[2022-09-19 23:11:22]# API REQUEST --->Popular 2022
