@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15ee92ed3a3c14697be106fb29c13fa6150dc156
 namespace App\Http\Controllers;
 //use Excel;
 use App\User;
@@ -25,7 +28,6 @@ use Illuminate\Support\Facades\DB;
 use App\Exports\Template_Download;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PurchaseExport;
-
 class OrderController extends Controller
 {
     public function getOrderByType($type = 'active')
@@ -978,7 +980,6 @@ class OrderController extends Controller
         curl_close($ch);
         }*/
         Order::withoutGlobalScope('paid_orders')->where('status', 'registered')->update(['status' => 'in_transit']);
-
         return back()->withStatus('Orders Moved to out for delivery Successfully')->withTab('registered');
     }
 

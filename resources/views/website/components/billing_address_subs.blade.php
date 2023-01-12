@@ -32,7 +32,6 @@
 </div>
 <input type="hidden" name="flag_coupen" id="flag_coupen" value="0">
 <input type="hidden" name="coupen_id" id="coupen_id" value="0">
-
 <div class="row">
     <div class="col-md-6">
         <div class="form-group ">
