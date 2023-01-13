@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 //use Excel;
 use App\User;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\DB;
 use App\Exports\Template_Download;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PurchaseExport;
+
 class OrderController extends Controller
 {
     public function getOrderByType($type = 'active')
@@ -81,14 +83,21 @@ class OrderController extends Controller
         $delevery_totaloption = 0;
         \Cart::content();
 
-        $subtotal = str_replace(',', '', \Cart::subtotal());
+        $subtotal = str_replace(',', '', \Cart::total());
 
-        if ($subtotal < 999) {
-            if ($request->flag_coupen != 0) {
-                $delevery_totaloption += 60;
-            } else {
-                $delevery_totaloption += 60;
+   $request->flag_coupen==0?$delevery_totaloption += 60:$delevery_totaloption += 0;
+            
+        
+
+        if ($subtotal > 999) {
+            if($request->flag_coupen == 2){
+                $delevery_totaloption += 0;
             }
+            elseif($request->flag_coupen==1){
+                $delevery_totaloption += 0;
+
+            }
+           
         }
         
       
@@ -108,13 +117,13 @@ class OrderController extends Controller
             $user->redeem_point=$user_red_poi;
             $user->save();
 
-            $payable_amount  =  $redeem_point+$delevery_totaloption - $total_red_point;
+            $payable_amount  =  Cart::total()+$delevery_totaloption - $total_red_point;
         }
                 // dd('i m here',$payment);
 
         }
         else {
-            $payable_amount  =  cart_total() + $delevery_totaloption;
+            $payable_amount  =  \Cart::total() + $delevery_totaloption;
         }
 
 
@@ -266,10 +275,12 @@ class OrderController extends Controller
                 'order_price' => cart_total(),
                 'gst' => cart_gst(),
                 'total' => cart_total(),
-                'delevery_charge' => cart_total() > 999 ?   0 : 60,
+                // 'delevery_charge' => cart_total() > 999 ?   0 : 60,
+                'delevery_charge' =>  $delevery_totaloption,
                 'order_total_weight' => order_weight(),
                 'delivery_time' => $request->delivery_time,
             ]);
+            // dd($order,$request->flag_coupen,$delevery_totaloption,$payable_amount);
             /*   if($order->total < 499)
             {
                 $order->delevery_charge=30;
@@ -405,6 +416,7 @@ class OrderController extends Controller
 
         //end here 
         return view('website.thank_you', compact('order'));
+
     }
 
     public function verify_coupen(Request $request)
@@ -526,7 +538,7 @@ class OrderController extends Controller
         //         }
 
         //         if (!empty($product_match)) {
-        //             $redeem_code_apply=$data[0]->points	;
+        //             $redeem_code_apply=$data[0]->points  ;
         //             if($grand_total>0){
         //                 $grand_total=$grand_total - $redeem_code_apply ;
         //                 $response         =     array('status' => 1, 'message' => 'Coupen is successfully applied', 'grand_total' => $grand_total, 'redeem_point' => $redeem_code_apply,'redeem_id'=> $redeem_id);
@@ -976,6 +988,7 @@ class OrderController extends Controller
         curl_close($ch);
         }*/
         Order::withoutGlobalScope('paid_orders')->where('status', 'registered')->update(['status' => 'in_transit']);
+
         return back()->withStatus('Orders Moved to out for delivery Successfully')->withTab('registered');
     }
 

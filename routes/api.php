@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |*/
 Route::get('mhome', 'ApiController@home');
+Route::get('slider', 'ApiController@slider');
 Route::post('mlogin', 'ApiController@postLogin');
 //Route::get('mlogin', 'ApiController@Login');
 
@@ -26,6 +27,8 @@ Route::get('category', 'ApiController@categoryShow');
 Route::get('search/{keyword}', 'ApiController@search');
 Route::post('profile/update', 'ApiController@profileUpdate');
 Route::post('profile', 'ApiController@profile');
+Route::get('profile_details', 'ApiController@profile_details');
+
 Route::post('myorders', 'ApiController@myorders');
 
 Route::post('singlelisting', 'ApiController@product');

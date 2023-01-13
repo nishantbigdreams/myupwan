@@ -3,29 +3,30 @@ $delevery_total = 0.0;
 $total_price = 0.0;
 $shipping = 0;
 ?>
-@include('_partials.website.header')
+<?php echo $__env->make('_partials.website.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <link rel="stylesheet" type="text/css" href="newcss/style.min.css">
 
 <body>
     <div class="page-wrapper">
-        @include('_partials.website.nav')
+        <?php echo $__env->make('_partials.website.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <!-- End Header -->
         <main class="main checkout">
             <div class="page-content pt-7 pb-10 mb-10">
                 <div class="step-by pr-4 pl-4">
-                    <h3 class="title title-simple title-step"><a href="{{url('cartnew')}}">1. Shopping Cart</a></h3>
+                    <h3 class="title title-simple title-step"><a href="<?php echo e(url('cartnew')); ?>">1. Shopping Cart</a></h3>
 
-                    <h3 class="title title-simple title-step active"><a href="{{url('checkout')}}">2. Checkout</a></h3>
+                    <h3 class="title title-simple title-step active"><a href="<?php echo e(url('checkout')); ?>">2. Checkout</a></h3>
 
-                    <h3 class="title title-simple title-step"><a href="{{url('ordercomplete')}}">3. Order Complete</a></h3>
+                    <h3 class="title title-simple title-step"><a href="<?php echo e(url('ordercomplete')); ?>">3. Order Complete</a></h3>
                 </div>
                 <div class="container mt-7">
 
-                    @if(Auth::user())
+                    <?php if(Auth::user()): ?>
 
-                    <form action="{{route('checkout_order')}}" method="post" id="checkoutForm">
-                        {{ csrf_field() }}
-                        @endif
+                    <form action="<?php echo e(route('checkout_order')); ?>" method="post" id="checkoutForm">
+                        <?php echo e(csrf_field()); ?>
+
+                        <?php endif; ?>
                         <input type="hidden" name="rp_payment_id">
                         <input type="hidden" name="payment_method" value="cod">
                         <div class="row">
@@ -34,7 +35,7 @@ $shipping = 0;
                                 <div id="billing_address_div" class="panel-collapse collapse1 in">
                                     <div class="panel-body">
 
-                                        @component('website.components.billing_address',['dropdownValue' => $between])@endcomponent
+                                        <?php $__env->startComponent('website.components.billing_address',['dropdownValue' => $between]); ?><?php echo $__env->renderComponent(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -50,23 +51,25 @@ $shipping = 0;
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach(\Cart::content() as $product)
-                                                @php(
+                                                <?php $__currentLoopData = \Cart::content(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php (
 
                                                 $total_price = $total_price + ($product->price) * ((int)$product->qty)
-                                                )
+                                                ); ?>
                                                 <tr>
-                                                    <td class="product-name">{{$product->name}}<span class="product-quantity">×&nbsp;{{$product->qty}}</span></td>
-                                                    <td class="product-total text-body">₹ {{$product->price}}
-                                                        @php($delevery_total += $product->options->delevery_charge)</td>
+                                                    <td class="product-name"><?php echo e($product->name); ?><span class="product-quantity">×&nbsp;<?php echo e($product->qty); ?></span></td>
+                                                    <td class="product-total text-body">₹ <?php echo e($product->price); ?>
+
+                                                        <?php ($delevery_total += $product->options->delevery_charge); ?></td>
                                                 </tr>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                 <tr class="summary-subtotal">
                                                     <td>
                                                         <h4 class="summary-subtitle">Subtotal </h4>
                                                     </td>
-                                                    <td class="summary-subtotal-price pb-0 pt-0" id="subtotal_value">₹ {{number_format($total_price)}}
+                                                    <td class="summary-subtotal-price pb-0 pt-0" id="subtotal_value">₹ <?php echo e(number_format($total_price)); ?>
+
                                                     </td>
                                                 </tr>
                                                 <tr class="summary-subtotal">
@@ -98,8 +101,8 @@ $shipping = 0;
                                                         <h4 class="summary-subtitle">Total</h4>
                                                     </td>
                                                     <td class=" pt-0 pb-0">
-                                                        <input class="grand_total" type="hidden" name="grand_total" value="{{cart_total() > 999 ?   cart_total() : cart_total()+60 }}">
-                                                        <p class="summary-total-price ls-s text-primary" id="grand_total">₹ {{cart_total() > 999 ?   cart_total() : cart_total()+60 }}</p>
+                                                        <input class="grand_total" type="hidden" name="grand_total" value="<?php echo e(cart_total() > 999 ?   cart_total() : cart_total()+60); ?>">
+                                                        <p class="summary-total-price ls-s text-primary" id="grand_total">₹ <?php echo e(cart_total() > 999 ?   cart_total() : cart_total()+60); ?></p>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -114,19 +117,20 @@ $shipping = 0;
                                                 </div>
                                                 <div id="ONLINE" class="expanded" style="display: block;">
                                                     <div class="card-body ls-m">
-                                                        <img src="{{ asset('website/img/payment/Razorpay.png') }}" alt="Razorpay Payment" title="PayPal" class="img-responsive" width="50%" style="padding-bottom: 20px" />
+                                                        <img src="<?php echo e(asset('website/img/payment/Razorpay.png')); ?>" alt="Razorpay Payment" title="PayPal" class="img-responsive" width="50%" style="padding-bottom: 20px" />
                                                         <p style="font-size: 14px !important;">
                                                             Note: You will be redirected to Razorpay to securely complete your payment.
                                                         </p>
-                                                        @if(session('payment_error'))
+                                                        <?php if(session('payment_error')): ?>
                                                         <div class="alert alert-danger alert-dismissible">
                                                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                             <strong>Oops!</strong>
-                                                            {!! session('payment_error') !!}
+                                                            <?php echo session('payment_error'); ?>
+
                                                         </div>
                                                         <input type="hidden" name="retry_payment" value="retry_payment">
-                                                        <input type="hidden" name="retry_order" value="{{session('retry_order')}}">
-                                                        @endif
+                                                        <input type="hidden" name="retry_order" value="<?php echo e(session('retry_order')); ?>">
+                                                        <?php endif; ?>
                                                         <button name="payment_method" value="online" class="btn btn-primary proceed_btn" id="razorpaybtn">
                                                             Proceed
                                                         </button>
@@ -145,15 +149,16 @@ $shipping = 0;
 
                                                         <div class="col-xs-12">
                                                             One time password will be sent to
-                                                            ******{{substr(auth()->user()->phone ?? "",6,10)}}
+                                                            ******<?php echo e(substr(auth()->user()->phone ?? "",6,10)); ?>
+
                                                         </div>
 
-                                                        @if(!isset(auth()->user()->phone))
+                                                        <?php if(!isset(auth()->user()->phone)): ?>
 
 
                                                         <input type="text" name="guest_phone_text" id="guest_phone_text" class="form-control " placeholder="Enter Mobile No for otp" value="" required>
 
-                                                        @endif
+                                                        <?php endif; ?>
 
 
                                                         <div class="row">
@@ -172,9 +177,9 @@ $shipping = 0;
                                                             </div>
                                                             <div class="col-xs-12">
                                                                 <center id="message" style="height:10px">
-                                                                    @if(session('otp_error'))
-                                                                    <span class="text-danger">{{session('otp_error')}}</span>
-                                                                    @endif
+                                                                    <?php if(session('otp_error')): ?>
+                                                                    <span class="text-danger"><?php echo e(session('otp_error')); ?></span>
+                                                                    <?php endif; ?>
                                                                 </center>
                                                             </div>
                                                         </div>
@@ -190,13 +195,7 @@ $shipping = 0;
                                     </div>
 
 
-                                    {{-- <form id="thank_you_form" method="post" action="{{route('checkout_order')}}">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="order_id" value="">
-                                    <button type="submit" class="btn btn-dark btn-rounded btn-order">Place
-                                        Order
-                                    </button>
-                    </form>--}}
+                                    
 
 
                 </div>
@@ -209,11 +208,12 @@ $shipping = 0;
     </div>
     </main>
     </div>
-    <form id="thank_you_form" method="post" action="{{route('thank_you_page')}}">
-        {{csrf_field()}}
+    <form id="thank_you_form" method="post" action="<?php echo e(route('thank_you_page')); ?>">
+        <?php echo e(csrf_field()); ?>
+
         <input type="hidden" name="order_id" value="">
     </form>
-    @include('_partials.website.footer')
+    <?php echo $__env->make('_partials.website.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 
     <script type="text/javascript">
@@ -229,7 +229,7 @@ $shipping = 0;
             $('#ship_to_diff_add_div').toggle('slow');
         });
 
-        if ("{{old('ship_contact_person')}}" != '') {
+        if ("<?php echo e(old('ship_contact_person')); ?>" != '') {
             $('#ship_to_diff_add').prop('checked', true).change();
             $('#shipping').click();
         }
@@ -291,22 +291,22 @@ $shipping = 0;
 
                 var guest_phone_text = "";
                 var pincode = $('#bill_pincode').val();
-                @if(Auth::user() == null)
+                <?php if(Auth::user() == null): ?>
                 guest_phone_text = $("#guest_phone_text").val();
-                @endif
+                <?php endif; ?>
                 var ispincodeokay = 'not okay';
-                @foreach($pincode as $p)
+                <?php $__currentLoopData = $pincode; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 if (<?php echo $p->pincode ?> == pincode) {
                     ispincodeokay = 'okay';
                 }
                 ispincodeokay = 'okay';
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 if ("<?php echo Auth::user()->status; ?>" == 'Approved' && ispincodeokay == 'okay') {
                     $otp_btn.html('<i class="fa fa-spinner fa-spin"></i> sending...');
                     $.ajax({
-                        url: "{{route('send_otp')}}",
+                        url: "<?php echo e(route('send_otp')); ?>",
                         data: {
-                            "_token": "{{ csrf_token() }}",
+                            "_token": "<?php echo e(csrf_token()); ?>",
                             'guest_phone_text': guest_phone_text,
 
                         },
@@ -348,9 +348,9 @@ $shipping = 0;
             console.log(code);
 
 
-            @if(Auth::user() == null)
+            <?php if(Auth::user() == null): ?>
             guest_phone_text = $("#guest_phone_text").val();
-            @endif
+            <?php endif; ?>
 
             // alert($('#otp_text').val());
 
@@ -361,11 +361,11 @@ $shipping = 0;
             // }
 
             $.ajax({
-                url: "{{route('verify_otp')}}",
+                url: "<?php echo e(route('verify_otp')); ?>",
                 method: "POST",
                 data: {
                     'otp': $('#otp_text').val(),
-                    "_token": "{{ csrf_token() }}",
+                    "_token": "<?php echo e(csrf_token()); ?>",
                     'guest_phone_text': guest_phone_text,
                     code: code,
                     redeem_code: redeem_code,
@@ -442,13 +442,13 @@ $shipping = 0;
             sendOtp();
         });
 
-        if ("{{session('otp_error')}}") {
+        if ("<?php echo e(session('otp_error')); ?>") {
             $('li[role=presentation]').find('a[href="#COD"]').click();
         }
 
-        @isset($ship_pin_error)
+        <?php if(isset($ship_pin_error)): ?>
         $('#ship_to_diff_add_div').toggle('slow');
-        @endisset
+        <?php endif; ?>
     </script>
 
     <script type="text/javascript">
@@ -460,10 +460,10 @@ $shipping = 0;
                     $input = $this.parent().parent().parent();
                     $loader.html('<i class="fa fa-spinner fa-spin"></i>');
                     $.ajax({
-                        url: "{{route('get_state_city')}}",
+                        url: "<?php echo e(route('get_state_city')); ?>",
                         method: 'post',
                         data: {
-                            "_token": "{{ csrf_token() }}",
+                            "_token": "<?php echo e(csrf_token()); ?>",
                             pincode: $this.val()
                         },
                     }).done(function(data, textStatus, jqXHR) {
@@ -490,9 +490,9 @@ $shipping = 0;
                         $input.find('input[name=state]').val(state);
                         $.ajax({
                             method: 'post',
-                            url: "{{route('shipping_availability')}}",
+                            url: "<?php echo e(route('shipping_availability')); ?>",
                             data: {
-                                "_token": "{{ csrf_token() }}",
+                                "_token": "<?php echo e(csrf_token()); ?>",
                                 pincode: $this.val()
                             },
 
@@ -515,7 +515,7 @@ $shipping = 0;
         });
     </script>
 
-    {{-- razor pay --}}
+    
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
@@ -524,14 +524,14 @@ $shipping = 0;
         var status = '';
         var grand_total = $('.grand_total').val() * 100;
 
-        // var amount = {{cart_grand_total()}} * 100;
+        // var amount = <?php echo e(cart_grand_total()); ?> * 100;
         // console.log(amount);
         var options = {
             "key": "rzp_live_0HN945385AwQNm",
             "amount": grand_total, // amount+grand_total 2000 paise = INR 20
             "name": "My Upavan",
             "description": "Purchase Description",
-            "image": "{{asset('images/logo.png')}}",
+            "image": "<?php echo e(asset('images/logo.png')); ?>",
             "handler": function(response) {
                 console.log("ok");
                 console.log(response);
@@ -540,10 +540,10 @@ $shipping = 0;
                 $('input[name="payment_method"]').val('neft');
 
                 $.ajax({
-                    url: "{{route('captureOrder')}}",
+                    url: "<?php echo e(route('captureOrder')); ?>",
                     type: 'post',
                     headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>"
                     },
                     data: $('#checkoutForm').serialize(),
                     success: function(data) {
@@ -559,8 +559,8 @@ $shipping = 0;
                 });
             },
             "prefill": {
-                "email": "{{auth::user()->email}}",
-                "contact": "{{auth::user()->phone}}",
+                "email": "<?php echo e(auth::user()->email); ?>",
+                "contact": "<?php echo e(auth::user()->phone); ?>",
             },
             "notes": {
                 "address": ""
@@ -608,10 +608,10 @@ $shipping = 0;
 
             if (code != "" && flag == 0) {
                 $.ajax({
-                    url: "{{route('verify_coupen')}}",
+                    url: "<?php echo e(route('verify_coupen')); ?>",
                     type: 'post',
                     headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>"
                     },
                     data: {
                         code: code,
@@ -684,10 +684,10 @@ $shipping = 0;
             var redeem_code = $("#redeem_code").val();
             if (redeem_code != "" && flag == 0) {
                 $.ajax({
-                    url: "{{route('verify_redeem_points')}}",
+                    url: "<?php echo e(route('verify_redeem_points')); ?>",
                     type: 'post',
                     headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>"
                     },
                     data: {
                         redeem_code: redeem_code,

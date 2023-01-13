@@ -73,7 +73,23 @@ class ApiController extends Controller
     }
   }
 
+  public function slider(){
+    $slider=DB::table('slider')->get();
+    foreach($slider as $slidervalue){
+      $slidervalue->image='https://www.myupavan.com/public/sliderimg/'.$slidervalue->image;
+    }
+    return response()->json(['status'=>'200','slider'=>$slider]);  
+    
+  }
 
+  public function profile_details(){
+    $users=DB::table('users')->get();
+    // foreach($slider as $slidervalue){
+    //   $slidervalue->image='https://www.myupavan.com/public/sliderimg/'.$slidervalue->image;
+    // }
+    return response()->json(['status'=>'200','users'=>$users]);  
+    
+  }
 
   protected function register(Request $request){
     $email = $request->email;

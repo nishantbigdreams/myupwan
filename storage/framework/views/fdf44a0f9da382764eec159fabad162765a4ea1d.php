@@ -2,20 +2,20 @@
 $total_price = 0.0;
 $tot =0;
 ?>
-@include('_partials.website.header')
+<?php echo $__env->make('_partials.website.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <link rel="stylesheet" type="text/css" href="newcss/style.min.css">
 <body>
 <div class="page-wrapper">
-    @include('_partials.website.nav')
+    <?php echo $__env->make('_partials.website.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <!-- End Header -->
     <main class="main order">
         <div class="page-content pt-7 pb-10 mb-10">
             <div class="step-by pr-4 pl-4">
-                <h3 class="title title-simple title-step"><a href="{{url('cartnew')}}">1. Shopping Cart</a></h3>
+                <h3 class="title title-simple title-step"><a href="<?php echo e(url('cartnew')); ?>">1. Shopping Cart</a></h3>
 
-                <h3 class="title title-simple title-step"><a href="{{url('checkout')}}">2. Checkout</a></h3>
+                <h3 class="title title-simple title-step"><a href="<?php echo e(url('checkout')); ?>">2. Checkout</a></h3>
 
-                <h3 class="title title-simple title-step active"><a href="{{url('ordercomplete')}}">3. Order Complete</a></h3>
+                <h3 class="title title-simple title-step active"><a href="<?php echo e(url('ordercomplete')); ?>">3. Order Complete</a></h3>
             </div>
             <div class="container mt-8">
                 <div class="order-message mr-auto ml-auto">
@@ -45,7 +45,7 @@ $tot =0;
                 <div class="order-results">
                     <div class="overview-item">
                         <span>Order number:</span>
-                        <strong>{{$order->order_id}}</strong>
+                        <strong><?php echo e($order->order_id); ?></strong>
                     </div>
                     <div class="overview-item">
                         <span>Status:</span>
@@ -53,27 +53,27 @@ $tot =0;
                     </div>
                     <div class="overview-item">
                         <span>Delivery Time:</span>
-                        <strong>{{$order->delivery_time}}</strong>
+                        <strong><?php echo e($order->delivery_time); ?></strong>
                     </div>
                     <div class="overview-item">
                         <span>Email:</span>
-                        <strong>{{auth::user()->email}}</strong>
+                        <strong><?php echo e(auth::user()->email); ?></strong>
                     </div>
-                    @php
+                    <?php
                     $product = json_decode($order->product_name);
                     $qty = json_decode($order->product_qty);
             $price = json_decode($order->product_price); 
 
                     $tot = 0;
-                    @endphp
-                    @for ($i=0; $i < count($product); $i++)
-                        @php
+                    ?>
+                    <?php for($i=0; $i < count($product); $i++): ?>
+                        <?php
                         $tot+=($qty[$i] ?? 1) * ($price[$i] ?? 1);
-                        @endphp
-                    @endfor
+                        ?>
+                    <?php endfor; ?>
                     <div class="overview-item">
                         <span>Total:</span>
-                        <strong>₹ {{number_format( $order->pay_amount)}}</strong>
+                        <strong>₹ <?php echo e(number_format( $order->pay_amount)); ?></strong>
                     </div>
                     <div class="overview-item">
                         <span>Payment method:</span>
@@ -86,7 +86,7 @@ $tot =0;
                             $paymenttype= "Online mode";
                         }
                         ?>
-                        <strong>{{$paymenttype}}</strong>
+                        <strong><?php echo e($paymenttype); ?></strong>
                     </div>
                 </div>
 
@@ -103,59 +103,60 @@ $tot =0;
                         </tr>
                         </thead>
                         <tbody>
-                        @php
+                        <?php
                         $product = json_decode($order->product_name);
                         $qty = json_decode($order->product_qty);
                         $price = json_decode($order->product_price);
                         $tot = 0;
 
-                        @endphp
-                        @for ($i=0; $i < count($product); $i++)
-                            @php
+                        ?>
+                        <?php for($i=0; $i < count($product); $i++): ?>
+                            <?php
                             $tot+=($qty[$i] ?? 1) * ($price[$i] ?? 1);
-                            @endphp
+                            ?>
                             <tr>
-                                <td class="product-name">{{$product[$i]}}<span> <i class="fas fa-times"></i>
-                                        {{$qty[$i]}}</span></td>
-                                <td class="product-price">₹ {{number_format($price[$i])}}</td>
+                                <td class="product-name"><?php echo e($product[$i]); ?><span> <i class="fas fa-times"></i>
+                                        <?php echo e($qty[$i]); ?></span></td>
+                                <td class="product-price">₹ <?php echo e(number_format($price[$i])); ?></td>
                             </tr>
-                        @endfor
+                        <?php endfor; ?>
 
 
                         <tr class="summary-subtotal">
                             <td>
                                 <h4 class="summary-subtitle">Subtotal:</h4>
                             </td>
-                            <td class="summary-subtotal-price">₹ {{number_format($tot)}}</td>
+                            <td class="summary-subtotal-price">₹ <?php echo e(number_format($tot)); ?></td>
                         </tr>
                         <tr class="summary-subtotal">
                             <td>
                                 <h4 class="summary-subtitle">Delivery Charge(Free Delivery If order value more than 999)</h4>
                             </td>
-                            <td class="summary-subtotal-price">₹ {{number_format($order->delevery_charge)}}</td>
+                            <td class="summary-subtotal-price">₹ <?php echo e(number_format($order->delevery_charge)); ?></td>
                         </tr>
                         <tr class="summary-subtotal">
                             <td>
                                 <h4 class="summary-subtitle">Payment method:</h4>
                             </td>
-                            <td class="summary-subtotal-price">{{$order->payment->method}}</td>
+                            <td class="summary-subtotal-price"><?php echo e($order->payment->method); ?></td>
                         </tr>
-                        @if($order->discount)
+                        <?php if($order->discount): ?>
                             <tr>
                                 <td>1% Off on Neft Payment</td>
                                 <td></td>
                                 <td> - <i class="fa fa-inr"></i>
-                                    {{number_format($order->discount)}}
+                                    <?php echo e(number_format($order->discount)); ?>
+
                                 </td>
                             </tr>
-                        @endif
+                        <?php endif; ?>
                         <tr class="summary-subtotal">
                             <td>
                                 <h4 class="summary-subtitle">Total:</h4>
                             </td>
                             <td>
-                                <!-- <p class="summary-total-price">₹ {{number_format($tot + $order->delevery_charge)}}</p> -->
-                                <p class="summary-total-price">₹ {{number_format($order->pay_amount)}}</p>
+                                <!-- <p class="summary-total-price">₹ <?php echo e(number_format($tot + $order->delevery_charge)); ?></p> -->
+                                <p class="summary-total-price">₹ <?php echo e(number_format($order->pay_amount)); ?></p>
 
                             </td>
                         </tr>
@@ -166,17 +167,18 @@ $tot =0;
 
                 <div class="address-info pb-8 mb-6">
                     <p class="address-detail pb-2">
-                        {{auth::user()->name}}<br>
-                        {{$order->address_line_0}}<br>
-                        {{$order->address_line_1}}<br>
-                        {{$order->city}},{{$order->state}}<br>
-                        {{$order->pincode}}
+                        <?php echo e(auth::user()->name); ?><br>
+                        <?php echo e($order->address_line_0); ?><br>
+                        <?php echo e($order->address_line_1); ?><br>
+                        <?php echo e($order->city); ?>,<?php echo e($order->state); ?><br>
+                        <?php echo e($order->pincode); ?>
+
                     </p>
 
                     <p class="email">info@myupavan.com</p>
                 </div>
 
-                <a href="{{url('cartnew')}}" class="btn btn-icon-left btn-dark btn-back btn-rounded btn-md mb-4"><i
+                <a href="<?php echo e(url('cartnew')); ?>" class="btn btn-icon-left btn-dark btn-back btn-rounded btn-md mb-4"><i
                             class="d-icon-arrow-left"></i> Back to List</a>
             </div>
         </div>
@@ -184,5 +186,5 @@ $tot =0;
     </main>
 </div>
 <!-- End Main -->
-@include('_partials.website.footer')
+<?php echo $__env->make('_partials.website.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </body>
