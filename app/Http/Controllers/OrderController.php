@@ -86,6 +86,7 @@ class OrderController extends Controller
         $subtotal = str_replace(',', '', \Cart::total());
 
    $request->flag_coupen==0?$delevery_totaloption += 60:$delevery_totaloption += 0;
+   $request->flag_coupen==2?$delevery_totaloption += 60:$delevery_totaloption += 0;
             
         
 
@@ -109,21 +110,22 @@ class OrderController extends Controller
         elseif($request->flag_coupen == 2){
             if($request->redeem_code){
             $user_redeem_point=auth::user()->redeem_point;
-            $redeem_point=$request->grand_total/100;
+            $redeem_point=cart_total()/100;
             $redeem_ceil=(int)$redeem_point;
-            $total_red_point=$redeem_ceil-$request->redeem_code;
             $user_red_poi=  $user_redeem_point-$request->redeem_code;
             $user = Auth::user();
             $user->redeem_point=$user_red_poi;
             $user->save();
 
-            $payable_amount  =  Cart::total()+$delevery_totaloption - $total_red_point;
+            $payable_amount  =  cart_total()+$delevery_totaloption ;
+            // dd(cart_total(),$delevery_totaloption,$payable_amount,$request->flag_coupen);
         }
                 // dd('i m here',$payment);
 
         }
+
         else {
-            $payable_amount  =  \Cart::total() + $delevery_totaloption;
+            $payable_amount  =  cart_total() + $delevery_totaloption;
         }
 
 
@@ -291,6 +293,8 @@ class OrderController extends Controller
              $order->delevery_charge=0; 
               $order->save();  
             }*/
+
+
         } else {
             \Cache::flush();
 
