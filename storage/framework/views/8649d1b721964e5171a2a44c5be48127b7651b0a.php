@@ -82,6 +82,7 @@ $pro_price='';
                                     $images = json_decode($order->product_image);
                                     $items = json_decode($order->product_name);
                                     $price = json_decode($order->product_price);
+                                    $pay_amount = json_decode($order->pay_amount);
                                     $qty = json_decode($order->product_qty);
                                     $tot =0;
                                     ?>
@@ -91,9 +92,10 @@ $pro_price='';
                                         <td class="order-status"><span>  <?php echo e(str_replace('_',' ', $order->status)); ?></span></td>
 
                                         <td class="order-total">
+                                            
                                             <?php for($i = 0; $i < count($items); $i++): ?>
-                                                <?php $pro_price = (number_format($price[$i])) * $qty[$i]?>
-                                            <span>₹ <?php echo e($pro_price); ?> <?php echo e($items[$i]); ?>  for <?php echo e($qty[$i]); ?> items</span>
+                                                <?php //$pro_price = (number_format($price[$i])) * $qty[$i]?>
+                                            <span>₹ <?php echo e($pay_amount); ?> <?php echo e($items[$i]); ?>  for <?php echo e($qty[$i]); ?> items</span>
                                             <?php endfor; ?>
                                         </td>
 

@@ -4,10 +4,10 @@
         color:red;
     }
     .sticky-icon-links li:nth-child(1) a:hover span{
-    	width: 80px!important;
+        width: 80px!important;
     }
     .sticky-icon-links li a:hover span{
-    	width: 80px!important;
+        width: 80px!important;
     }
 </style>
 <?php
@@ -237,14 +237,14 @@ $menuCatgPlantcare = \App\Category::select('name', 'id')->where('parent_category
                 <a href="<?php echo e(url('/contact')); ?>">Contact us</a>
             </li>
             <?php if(Auth::user()): ?>
-	            <li>
-	                <a href="<?php echo e(url('/account')); ?>">Account</a>
-	            </li>
+                <li>
+                    <a href="<?php echo e(url('/account')); ?>">Account</a>
+                </li>
             <?php endif; ?>
         </ul>
     </div>
 </div>
-	<div class="newsletter-popup newsletter-pop1 mfp-hide" id="newsletter-popup"
+    <div class="newsletter-popup newsletter-pop1 mfp-hide" id="newsletter-popup"
         style="background-image: url(images/newsletter-popup1.jpg)">
         <div class="newsletter-content">
             <h4 class="text-uppercase text-dark">We will give you just </h4>
@@ -267,26 +267,26 @@ $menuCatgPlantcare = \App\Category::select('name', 'id')->where('parent_category
     </div>
     
     <!-- sticky icons-->
-	<div class="sticky-icons-wrapper">
-		<div class="sticky-icon-links">
-			<ul>
-				<li><a href="https://api.whatsapp.com/send?phone=919619049996" target="_blank"><i class="fab fa-whatsapp"></i><span>Whatsapp</span></a></li>
-				<li><a href="https://www.facebook.com/Myupavan-104412385283041" target="_blank"><i class="fab fa-facebook"></i><span>Facebook</span></a>
-				</li>
-				<li><a href="https://www.instagram.com/Myupavan/" target="_blank"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-				</li>
-			</ul>
-		</div>
-		<!-- <div class="demos-list">
-			<div class="demos-overlay"></div>
-			<a class="demos-close" href="#"><i class="close-icon"></i></a>
-			<div class="demos-content scrollable scrollable-light">
-				<h3 class="demos-title">Demos</h3>
-				<div class="demos">
-				</div>
-			</div>
-		</div> -->
-	</div>
+    <div class="sticky-icons-wrapper">
+        <div class="sticky-icon-links">
+            <ul>
+                <li><a href="https://api.whatsapp.com/send?phone=919619049996" target="_blank"><i class="fab fa-whatsapp"></i><span>Whatsapp</span></a></li>
+                <li><a href="https://www.facebook.com/Myupavan-104412385283041" target="_blank"><i class="fab fa-facebook"></i><span>Facebook</span></a>
+                </li>
+                <li><a href="https://www.instagram.com/Myupavan/" target="_blank"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- <div class="demos-list">
+            <div class="demos-overlay"></div>
+            <a class="demos-close" href="#"><i class="close-icon"></i></a>
+            <div class="demos-content scrollable scrollable-light">
+                <h3 class="demos-title">Demos</h3>
+                <div class="demos">
+                </div>
+            </div>
+        </div> -->
+    </div>
 <!-- newsletter-popup type3 -->
 <!--<div class="newsletter-popup newsletter-pop3 mfp-hide" id="newsletter-popup">
     <div class="newsletter-content">
@@ -329,8 +329,8 @@ $menuCatgPlantcare = \App\Category::select('name', 'id')->where('parent_category
 <!-- Main JS File -->
 <script src="<?php echo e(asset('newjs/main.js')); ?>"></script>
 <script src="<?php echo e(asset('../vendor/validation/jquery.validate.min.js')); ?>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.0/sweetalert2.all.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 <script>
     $.validator.addMethod("emailvalidate", function (value, element) {
         var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,14}|[0-9]{1,3})(\]?)$/;

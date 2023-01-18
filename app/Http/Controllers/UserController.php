@@ -289,7 +289,7 @@ class UserController extends Controller
     {
         Cache::flush();
         // $orders = auth()->user()->orders->withoutGlobalScope('paid_orders');
-        $orders = Order::withoutGlobalScope('paid_orders')->where('user_id', auth()->user()->id)->get();
+        $orders = Order::withoutGlobalScope('paid_orders')->where('user_id', auth()->user()->id)->orderBy('created_at','ASC')->get();
         return view('website.account', compact('orders'));
     }
 

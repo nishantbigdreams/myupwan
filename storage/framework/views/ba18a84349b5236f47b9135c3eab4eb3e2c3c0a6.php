@@ -643,43 +643,19 @@ $shipping = 0;
 
 
                             //$tab.attr('href').value('#COD');
-                            // swal(
-                            //     '<b style="color:green">Success </b>',
-                            //     '<b style="color:black;">' + $response.message + '</b>',
-                            //     'success'
-                            // )
-                            swal({
-                                title: 'Are you sure?',
-                                text: "It will permanently deleted !",
-                                type: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, delete it!'
-                            }).then(function() {
-                                swal(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                );
-                            })
+                            swal(
+                                '<b style="color:green">Success </b>',
+                                '<b style="color:black;">'+$response.message+'</b>',
+                                'success'
+                            )
+
 
                         } else {
-                            swal({
-                                title: 'Are you sure?',
-                                text: "It will permanently deleted !",
-                                type: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, delete it!'
-                            }).then(function() {
-                                swal(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                );
-                            })
+                            swal(
+                                '<b style="color:red">Error!</b>',
+                                '<b style="color:black;">'+$response.message+'</b>',
+                                'error'
+                            )
                             // $("#success_message").append('');
                             // $("#success_message").append($response.message);
                             $("#flag_coupen").val("0");
